@@ -5,7 +5,6 @@ export class ProjectFactory{
     getAllProjects(){
         let projects = ["embla", "family tree"];
         return projects
-
     }
     searchProjects(searchTerm){
         let foundProjects = ["embla"]

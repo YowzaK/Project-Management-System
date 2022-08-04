@@ -4,6 +4,7 @@ import { Project } from "./Project.js";
 
 let newMainController = new MainController();
 newMainController.start();
+newMainController.showMessage("This is a info");
 
 
 

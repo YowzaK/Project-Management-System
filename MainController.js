@@ -8,8 +8,15 @@ export class MainController{
         var newProjectFactory = new ProjectFactory;
         console.log(newProjectFactory.getAllProjects());
     }
-    showMessage(message){}
-    hideMessage(){}     
+
+    showMessage(message){
+        document.getElementById("message").innerHTML=message;
+        document.getElementById("message").style.display = "block";
+    }
+    hideMessage(){
+        document.getElementById("message").innerHTML="";
+        document.getElementById("message").style.display = "none";
+    }     
         
 }
 
