@@ -4,7 +4,12 @@ import { Project } from "./Project.js";
 
 let newMainController = new MainController();
 newMainController.start();
-newMainController.showMessage("This is a info");
+
+const submitButton = document.getElementById("submit");
+
+submitButton.addEventListener("click", function(){
+    newMainController.search();
+});
 
 
 

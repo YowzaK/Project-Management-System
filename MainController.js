@@ -2,20 +2,46 @@ import { ProjectFactory } from "./ProjectFactory.js";
 
 
 export class MainController{
-    constructor(){}
+    constructor(){
+
+    }
 
     start(){
-        var newProjectFactory = new ProjectFactory;
-        console.log(newProjectFactory.getAllProjects());
+
+        this.showMessage('Loading..');
+
+        var newprojectFactory = new ProjectFactory;
+        let arr =  newprojectFactory.getAllProjects(); 
+        var projectlistView = document.getElementById("projects");
+        
+        arr.forEach(element => {
+            var node = document.createElement('li');
+            node.appendChild(document.createTextNode(element['name']));
+            projectlistView.appendChild(node);
+        });
+
+        this.hideMessage();
+
     }
 
+    search(){
+
+        const term = document.getElementById('term').value;
+
+        var newprojectFactory = new ProjectFactory;
+        let arr = newprojectFactory.searchProjects(term);
+
+        console.log(arr);
+    }
     showMessage(message){
-        document.getElementById("message").innerHTML=message;
-        document.getElementById("message").style.display = "block";
+        const msgView = document.getElementById('message');
+        msgView.innerHTML = message;
+        msgView.style.display='block';
     }
     hideMessage(){
-        document.getElementById("message").innerHTML="";
-        document.getElementById("message").style.display = "none";
+        const msgView = document.getElementById('message');
+        msgView.innerHTML = '';
+        msgView.style.display='none';
     }     
         
 }
