@@ -1,7 +1,15 @@
 export class ProjectFactory{
-    constructor(){}
+    constructor(){
+    }    
 
-    getAllProjects(){}
-    searchProjects(searchTerm){}
+    getAllProjects(){
+        let projects = ["embla", "family tree"];
+        return projects
+
+    }
+    searchProjects(searchTerm){
+        let foundProjects = ["embla"]
+        console.log(foundProjects);
+    }
     createProject(){}
 }
