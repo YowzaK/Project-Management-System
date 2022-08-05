@@ -21,7 +21,7 @@ export class ProjectFactory {
 
     }
 
-    searchProjects(searchTerm) {
+    async searchProjects(searchTerm) {
 
         let filtered = [];
         this.project.forEach(element => {
@@ -30,7 +30,7 @@ export class ProjectFactory {
                 filtered.push(element);
             }
         });
-        
+        //await new Promise(r => setTimeout(r, 5000));
         return filtered;
 
     }

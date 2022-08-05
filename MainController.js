@@ -18,10 +18,11 @@ export class MainController {
         }
     }
 
-    search() {
+    async search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
-        let arr = this.newprojectFactory.searchProjects(term);
+        this.clearList();
+        let arr = await this.newprojectFactory.searchProjects(term);
         this.hideMessage();
         this.fillList(arr);
     }
