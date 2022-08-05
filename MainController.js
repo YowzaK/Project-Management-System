@@ -4,21 +4,26 @@ import { ProjectFactory } from "./ProjectFactory.js";
 export class MainController {
 
     constructor() {
-       this.newprojectFactory = new ProjectFactory;
+        this.newprojectFactory = new ProjectFactory;
     }
 
-    start() {
+    async start() {
         this.showMessage('Loading..');
-        let arr = this.newprojectFactory.getAllProjects();
-        this.hideMessage();
-        this.fillList(arr);
+        try {
+            let arr = await this.newprojectFactory.getAllProjects();
+            this.hideMessage();
+            this.fillList(arr);
+        } catch (e) {
+            this.showMessage("Error with Json file");
+        }
     }
 
-    search() {
+    async search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
+        this.clearList();
+        let arr = await this.newprojectFactory.searchProjects(term);
         this.hideMessage();
-        let arr = this.newprojectFactory.searchProjects(term);
         this.fillList(arr);
     }
 
