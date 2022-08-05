@@ -1,41 +1,46 @@
 import { Project } from "./Project.js";
-import myJson from './projects.json' assert {type: 'json'};
 
 
-export class ProjectFactory{
-    
-    
+export class ProjectFactory {
 
-    constructor(){        
+
+
+    constructor() {
         this.project = [];
-    }    
-
-    getAllProjects(){       
-        for(let i =0; i < myJson.projects.length; i++){
-            this.project.push(this.createProject(myJson.projects[i].id, myJson.projects[i].name));
-        }        
-        return this.project;
-
     }
-    
-    searchProjects(searchTerm){
+
+    async getAllProjects() {
+       
+        let jsonRes;
+
+        let response = await fetch("./projects.json"); 
+        jsonRes = await response.json();
+
+        for(let i =0; i < jsonRes.projects.length; i++){
+            this.project.push(this.createProject(jsonRes.projects[i].id, jsonRes.projects[i].name));
+        }        
+
+        return this.project;
+    }
+
+    searchProjects(searchTerm) {
         let filtered = [];
         this.project.forEach(element => {
             let pName = element.name;
 
-            if(pName.toLowerCase().search(searchTerm.toLowerCase()) >= 0){
+            if (pName.toLowerCase().search(searchTerm.toLowerCase()) >= 0) {
                 filtered.push(element);
             }
         });
         return filtered;
     }
-    
-    createProject(id ,name){
-        return new Project(id,name); 
+
+    createProject(id, name) {
+        return new Project(id, name);
     }
 
-    fetchData(){
-        
+    fetchData() {
+
 
 
 

@@ -11,5 +11,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
     submitButton.addEventListener("click", function(){
         newMainController.search();
     });
-    
 });
