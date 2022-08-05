@@ -4,15 +4,12 @@ import { ProjectFactory } from "./ProjectFactory.js";
 export class MainController {
 
     constructor() {
-        this.ProjectFactory = ProjectFactory;
+       this.newprojectFactory = new ProjectFactory;
     }
 
     start() {
-
         this.showMessage('Loading..');
-        var newprojectFactory = new ProjectFactory;
-        let arr = newprojectFactory.getAllProjects();
-        var projectlistView = document.getElementById("projects");
+        let arr = this.newprojectFactory.getAllProjects();
         this.hideMessage();
         this.fillList(arr);
     }
@@ -20,23 +17,16 @@ export class MainController {
     search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
-        var newprojectFactory = new ProjectFactory;
-        let arr = [];
         this.hideMessage();
-        if (term.length === 0) {
-            this.clearList();
-            arr = newprojectFactory.getAllProjects();
-        } else {
-            arr = newprojectFactory.searchProjects(term);
-        }
+        let arr = this.newprojectFactory.searchProjects(term);
         this.fillList(arr);
     }
 
     fillList(arr) {
+        this.clearList();
         var projectlistView = document.getElementById("projects");
         if (arr.length === 0) {
             this.showMessage("No result found..");
-            this.clearList();
         } else {
             arr.forEach(element => {
                 var node = document.createElement('li');
