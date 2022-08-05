@@ -21,8 +21,8 @@ export class MainController {
     search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
-        this.hideMessage();
         let arr = this.newprojectFactory.searchProjects(term);
+        this.hideMessage();
         this.fillList(arr);
     }
 

@@ -38,11 +38,4 @@ export class ProjectFactory {
     createProject(id, name) {
         return new Project(id, name);
     }
-
-    fetchData() {
-
-
-
-
-    }
 }
