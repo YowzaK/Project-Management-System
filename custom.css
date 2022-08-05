@@ -20,10 +20,6 @@ body {
     z-index: 2;
 }
 
-h3{
-    color: red;
-}
-
 section{
     display: flex;    
     align-items: center;
