@@ -17,8 +17,17 @@ export class ProjectFactory{
         return this.project;
 
     }
+    
     searchProjects(searchTerm){
-        return searchTerm;
+        let filtered = [];
+        this.project.forEach(element => {
+            let pName = element.name;
+
+            if(pName.toLowerCase().search(searchTerm.toLowerCase()) >= 0){
+                filtered.push(element);
+            }
+        });
+        return filtered;
     }
     
     createProject(id ,name){

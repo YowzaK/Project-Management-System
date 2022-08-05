@@ -1,49 +1,71 @@
 import { ProjectFactory } from "./ProjectFactory.js";
 
 
-export class MainController{
-    constructor(){
+export class MainController {
 
+    constructor() {
+        this.ProjectFactory = ProjectFactory;
     }
 
-    start(){
+    start() {
 
         this.showMessage('Loading..');
-
         var newprojectFactory = new ProjectFactory;
-        let arr =  newprojectFactory.getAllProjects(); 
+        let arr = newprojectFactory.getAllProjects();
         var projectlistView = document.getElementById("projects");
-        
-        arr.forEach(element => {
-            var node = document.createElement('li');
-            node.appendChild(document.createTextNode(element['name']));
-            projectlistView.appendChild(node);
-        });
-
         this.hideMessage();
-
+        this.fillList(arr);
     }
 
-    search(){
-
+    search() {
+        this.showMessage("Searching..");
         const term = document.getElementById('term').value;
-
         var newprojectFactory = new ProjectFactory;
-        let arr = newprojectFactory.searchProjects(term);
-
-        console.log(arr);
+        let arr = [];
+        this.hideMessage();
+        if (term.length === 0) {
+            this.clearList();
+            arr = newprojectFactory.getAllProjects();
+        } else {
+            arr = newprojectFactory.searchProjects(term);
+        }
+        this.fillList(arr);
     }
-    showMessage(message){
+
+    fillList(arr) {
+        var projectlistView = document.getElementById("projects");
+        if (arr.length === 0) {
+            this.showMessage("No result found..");
+            this.clearList();
+        } else {
+            arr.forEach(element => {
+                var node = document.createElement('li');
+                node.appendChild(document.createTextNode(element['name']));
+                projectlistView.appendChild(node);
+            });
+        }
+    }
+
+    clearList() {
+        var projectlistView = document.getElementById("projects");
+        var child = projectlistView.lastElementChild;
+        while (child) {
+            projectlistView.removeChild(child);
+            child = projectlistView.lastElementChild;
+        }
+    }
+
+    showMessage(message) {
         const msgView = document.getElementById('message');
         msgView.innerHTML = message;
-        msgView.style.display='block';
+        msgView.style.display = 'block';
     }
-    hideMessage(){
+    hideMessage() {
         const msgView = document.getElementById('message');
         msgView.innerHTML = '';
-        msgView.style.display='none';
-    }     
-        
+        msgView.style.display = 'none';
+    }
+
 }
 
 
