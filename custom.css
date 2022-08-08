@@ -6,18 +6,27 @@ body {
     font-family: "Times New Roman", Times, serif;
 }
 
+.title {
+    display: flex;
+    font-family:monospace;
+}
+
+button#submit:disabled {
+    background-color: #dddddd;
+}
+
+.title-text{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .clr2 {
     background-color: #4FA15F;
 }
 
 .clr {
     background-color: #365C9A;    
-}
-
-#home-Z {
-    position: absolute;    
-    top: 26vh;
-    z-index: 2;
 }
 
 section{
@@ -48,6 +57,7 @@ section{
    display: inline-block;
    font-size: 16px; 
    border-radius: 5px;
+   cursor: pointer;
 }
 
 .col-1 {width: 8.33%;}

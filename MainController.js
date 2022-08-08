@@ -10,21 +10,30 @@ export class MainController {
     async start() {
         this.showMessage('Loading..');
         try {
+            this.disableSearch(true);
             let arr = await this.newprojectFactory.getAllProjects();
             this.hideMessage();
             this.fillList(arr);
         } catch (e) {
             this.showMessage("Error with Json file");
         }
+        this.disableSearch(false);
     }
 
     async search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
+        this.disableSearch(true);
         this.clearList();
         let arr = await this.newprojectFactory.searchProjects(term);
         this.hideMessage();
         this.fillList(arr);
+        this.disableSearch(false);
+    }
+
+    disableSearch(setEnable){
+        document.getElementById("term").disabled = setEnable;
+        document.getElementById("submit").disabled = setEnable;
     }
 
     fillList(arr) {
