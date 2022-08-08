@@ -29,12 +29,6 @@ button#submit:disabled {
     background-color: #365C9A;    
 }
 
-#home-Z {
-    position: absolute;    
-    top: 26vh;
-    z-index: 2;
-}
-
 section{
     display: flex;    
     align-items: center;
