@@ -2,11 +2,12 @@ import { ProjectFactory } from "./ProjectFactory.js";
 
 
 export class MainController {
-
+    
     constructor() {
         this.newprojectFactory = new ProjectFactory;
     }
 
+    //JSON file is fetch and return to the user
     async start() {
         this.showMessage('Loading..');
         try {
@@ -20,6 +21,7 @@ export class MainController {
         this.disableSearch(false);
     }
 
+    //Function used to filter any project
     async search() {
         this.showMessage("Searching..");
         const term = document.getElementById('term').value;
@@ -31,11 +33,13 @@ export class MainController {
         this.disableSearch(false);
     }
 
+    //Function used to disable search button and serach bar
     disableSearch(setEnable){
         document.getElementById("term").disabled = setEnable;
         document.getElementById("submit").disabled = setEnable;
     }
 
+    //Fill the list with the results
     fillList(arr) {
         this.clearList();
         var projectlistView = document.getElementById("projects");
@@ -50,6 +54,7 @@ export class MainController {
         }
     }
 
+    //Used to clear the list
     clearList() {
         var projectlistView = document.getElementById("projects");
         var child = projectlistView.lastElementChild;
@@ -59,11 +64,14 @@ export class MainController {
         }
     }
 
+    //Show messages to user
     showMessage(message) {
         const msgView = document.getElementById('message');
         msgView.innerHTML = message;
         msgView.style.display = 'block';
     }
+
+    //Hide the message
     hideMessage() {
         const msgView = document.getElementById('message');
         msgView.innerHTML = '';

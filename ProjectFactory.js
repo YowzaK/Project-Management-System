@@ -4,9 +4,10 @@ import { Project } from "./Project.js";
 export class ProjectFactory {
 
     constructor() {
-        this.project = [];
+        this.projectList = [];
     }
 
+    //Used to get all projects
     async getAllProjects() {
 
         let jsonRes;
@@ -14,27 +15,29 @@ export class ProjectFactory {
         jsonRes = await response.json();
         //await new Promise(r => setTimeout(r, 5000));
         for (let i = 0; i < jsonRes.projects.length; i++) {
-            this.project.push(this.createProject(jsonRes.projects[i].id, jsonRes.projects[i].name));
+            this.projectList.push(this.createProject(jsonRes.projects[i].id, jsonRes.projects[i].name));
         }
 
-        return this.project;
+        return this.projectList;
 
     }
 
+    //Funtion used to search
     async searchProjects(searchTerm) {
 
-        let filtered = [];
-        this.project.forEach(element => {
+        let filteredProjects = [];
+        this.projectList.forEach(element => {
             let pName = element.name;
             if (pName.toLowerCase().search(searchTerm.toLowerCase()) >= 0) {
-                filtered.push(element);
+                filteredProjects.push(element);
             }
         });
         //await new Promise(r => setTimeout(r, 5000));
-        return filtered;
+        return filteredProjects;
 
     }
 
+    //Function used to create project object
     createProject(id, name) {
         return new Project(id, name);
     }
